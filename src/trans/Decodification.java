@@ -11,30 +11,38 @@ public class Decodification {
         Originalkey = datos.key;
         Codification = datos.code;
         if( datos.key != null){
-            DecodeWithKey();
+            DecodeWithKey(Originalkey, Codification);
         }else{
             DecodeWithBruteForce();
         }
     }
 
-    private void DecodeWithKey() {
-        KeyTransformation();
-        ArrayList<String> matrix = new ArrayList<>();
-        int leters = Originalkey.length()/Codification.length();
-        int overflow = Originalkey.length()%Codification.length();
-        
-        for (int i = 0; i < Originalkey.length(); i++) {
-            
+    protected Character[][] DecodeWithKey(String key, String code) {
+        int symbols = code.length()/key.length();
+        int overflow = code.length()%key.length();
+        Character solution[][] = new Character[symbols][overflow];
+        for (int i = 0; i < overflow; i++) {
+            for (int j = 0; j < symbols; j++) {
+                solution[j][i] = code.charAt(symbols*KeyTransformation(key).get(i)+j);
+            }
         }
+        
+        for (int i = overflow; i < key.length(); i++) {
+            for (int j = 0; j < symbols; j++) {
+                solution[j][i] = code.charAt(symbols*KeyTransformation(key).get(i)+j);
+            }
+        }
+        
+        return solution;
     }
 
     private void DecodeWithBruteForce() {
     }
 
-    private void KeyTransformation() {
+    private ArrayList<Integer> KeyTransformation(String key ) {
         ArrayList<Integer> transformation = new ArrayList<>();
         ArrayList<Integer> result;
-        String keyToUpper = Originalkey.toUpperCase();
+        String keyToUpper = key.toUpperCase();
         
         
         for (int i = 0; i < keyToUpper.length(); i++) {
@@ -43,13 +51,13 @@ public class Decodification {
         
         result = (ArrayList<Integer>) transformation.clone();
         
-        for (int i = 0; i < Originalkey.length(); i++) {
+        for (int i = 0; i < key.length(); i++) {
             int position = transformation.indexOf(Collections.max(transformation));
             transformation.set(position, 0);
-            result.set(position, Originalkey.length() - i);
+            result.set(position, key.length() - (i+1));
         }
-            
-        System.out.print(result.toString());
+        return result;
+        
     }
 
 }
