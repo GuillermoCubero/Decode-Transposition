@@ -4,23 +4,11 @@ import java.util.*;
 
 public class Decodification {
     
-    private String Originalkey;
-    private String Codification;
-    
-    public void Input(InputOutput datos) {
-        Originalkey = datos.key;
-        Codification = datos.code;
-        if( datos.key != null){
-            DecodeWithKey(Originalkey, Codification);
-        }else{
-            DecodeWithBruteForce();
-        }
-    }
-
     protected Character[][] DecodeWithKey(String key, String code) {
         int symbols = code.length()/key.length();
         int overflow = code.length()%key.length();
         Character solution[][] = new Character[key.length()][symbols+1];
+        
         
         for (int i = 0; i < key.length(); i++) {
             if(KeyTransformation(key).get(i) < key.length()-overflow){
@@ -37,7 +25,8 @@ public class Decodification {
         return solution;
     }
 
-    private void DecodeWithBruteForce() {
+    protected Character[][] DecodeWithBruteForce() {
+        return null;
     }
 
     private ArrayList<Integer> KeyTransformation(String key ) {
