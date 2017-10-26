@@ -19,7 +19,7 @@ public class InputOutput {
     public void mostrarDatos(){
         Decodification result = new Decodification();
         Character[][] decodification;
-        code.replaceAll("\\s*$","");
+        code = code.replaceAll("\\s*$","");
         if( key != null){
             decodification = result.DecodeWithKey(key,code);
         }else{
