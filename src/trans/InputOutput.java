@@ -18,7 +18,13 @@ public class InputOutput {
     
     public void mostrarDatos(){
         Decodification result = new Decodification();
-        Character[][] decodification = result.DecodeWithKey(key,code);
+        Character[][] decodification;
+        code.replaceAll("\\s*$","");
+        if( key != null){
+            decodification = result.DecodeWithKey(key,code);
+        }else{
+            decodification = result.DecodeWithBruteForce();
+        }
         System.out.println(Arrays.deepToString(decodification));
     }
 }
