@@ -22,6 +22,7 @@ public class Decodification {
         ArrayList<String> matrix = new ArrayList<>();
         int leters = Originalkey.length()/Codification.length();
         int overflow = Originalkey.length()%Codification.length();
+        
         for (int i = 0; i < Originalkey.length(); i++) {
             
         }
@@ -32,18 +33,23 @@ public class Decodification {
 
     private void KeyTransformation() {
         ArrayList<Integer> transformation = new ArrayList<>();
+        ArrayList<Integer> result;
         String keyToUpper = Originalkey.toUpperCase();
+        
         
         for (int i = 0; i < keyToUpper.length(); i++) {
             transformation.add((int) keyToUpper.charAt(i) - 64);
         }
         
-        int higherPosition = transformation.indexOf(Collections.max(transformation));
-        for (int i = 0; i < keyToUpper.length(); i++) {
-            transformation.set(transformation.indexOf(higherPosition), Originalkey.length()-i);
+        result = (ArrayList<Integer>) transformation.clone();
+        
+        for (int i = 0; i < Originalkey.length(); i++) {
+            int position = transformation.indexOf(Collections.max(transformation));
+            transformation.set(position, 0);
+            result.set(position, Originalkey.length() - i);
         }
             
-        System.out.print(transformation.toString());
+        System.out.print(result.toString());
     }
 
 }
