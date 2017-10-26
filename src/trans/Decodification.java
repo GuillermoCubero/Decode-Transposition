@@ -20,19 +20,20 @@ public class Decodification {
     protected Character[][] DecodeWithKey(String key, String code) {
         int symbols = code.length()/key.length();
         int overflow = code.length()%key.length();
-        Character solution[][] = new Character[symbols][overflow];
-        for (int i = 0; i < overflow; i++) {
-            for (int j = 0; j < symbols; j++) {
-                solution[j][i] = code.charAt(symbols*KeyTransformation(key).get(i)+j);
+        Character solution[][] = new Character[key.length()][symbols+1];
+        
+        for (int i = 0; i < key.length(); i++) {
+            if(KeyTransformation(key).get(i) < key.length()-overflow){
+                for (int j = 0; j < symbols; j++) {
+                    solution[i][j] = code.charAt(symbols*KeyTransformation(key).get(i)+j);
+                }
+                
+            }else{
+                for (int j = 0; j < symbols +1; j++) {
+                    solution[i][j] = code.charAt(symbols*KeyTransformation(key).get(i)+j);
+                }
             }
         }
-        
-        for (int i = overflow; i < key.length(); i++) {
-            for (int j = 0; j < symbols; j++) {
-                solution[j][i] = code.charAt(symbols*KeyTransformation(key).get(i)+j);
-            }
-        }
-        
         return solution;
     }
 
