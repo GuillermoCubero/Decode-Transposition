@@ -1,5 +1,6 @@
 package trans;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class InputOutput {
@@ -15,4 +16,9 @@ public class InputOutput {
         key  = sc.nextLine();
     }
     
+    public void mostrarDatos(){
+        Decodification result = new Decodification();
+        Character[][] decodification = result.DecodeWithKey(key,code);
+        System.out.println(Arrays.deepToString(decodification));
+    }
 }
