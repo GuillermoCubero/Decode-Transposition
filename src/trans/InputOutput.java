@@ -19,12 +19,21 @@ public class InputOutput {
     public void mostrarDatos(){
         Decodification result = new Decodification();
         Character[][] decodification;
-        code = code.replaceAll("\\s*$","");
+        code = code.replaceAll(" ","");
         if( key != null){
             decodification = result.DecodeWithKey(key,code);
         }else{
             decodification = result.DecodeWithBruteForce();
         }
-        System.out.println(Arrays.deepToString(decodification));
+        printResult(decodification);
+    }
+    
+    private void printResult(Character[][] decodification) {
+        for (int j = 0; j < decodification[0].length; j++) {
+            for (int i = 0; i < decodification.length; i++) {
+                System.out.print(decodification[i][j] + " ");
+            }
+            System.out.println("");
+        }
     }
 }
