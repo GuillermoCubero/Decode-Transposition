@@ -4,35 +4,43 @@ import java.util.*;
 
 public class Decodification {
     
-    protected Character[][] DecodeWithKey(String key, String code) {
-        int symbols = code.length()/key.length();
-        int overflow = code.length()%key.length();
-        int count = 0;
-        int rows = symbols;
-        if (overflow > 1)rows++;
-        Character solution[][] = new Character[key.length()][rows];
-        ArrayList<Integer> transformation = KeyTransformation(key);
-        
-        for (int i = 0 ; i < key.length(); i++) {
-            
-            
-            
-            
-            if(overflow > 1){
-                for (int j = 0; j < symbols+1; j++) {
-                    solution[i][j] = code.charAt(symbols*KeyTransformation(key).get(i)+j);
-                    count++;
-                }
-            }else{
-                for (int j = 0; j < symbols; j++) {
-                solution[KeyTransformation(key).get(i)][j] = code.charAt(symbols*KeyTransformation(key).get(i)+j);
-            }
+    private static String printTable(char[][] columnArray, int[] key) {
+        String res ="";
+        for (char[] columnArray1 : columnArray) {
+            for (int i = 0; i < columnArray1.length; i++) {
+                res += columnArray1[key[i]];
+                
             }
         }
-            
-            
-        return solution;
+        return res;
     }
+    
+
+    public static String decode(int [] permutation, int[] overflows, String text) {
+        
+        char[][] table = new char[rowsCalculator(text, permutation.length)][permutation.length];
+        
+        for (int i = 0; i < permutation.length; i++) {
+            for (int j = 0; j < table.length; j++) {
+                if(overflows[i]==0 && j == table.length-1){
+                    table[j][i] ='-';
+                }else {
+                    table[j][i] = text.charAt(0);
+                    text = text.substring(1);
+                }
+                
+            }
+            
+        }
+        return printTable(table, permutation);
+        
+    }
+
+    private static int rowsCalculator(String text, int colums) {
+        final int rows = text.length()/colums;
+        return text.length()%colums>0 ? rows+1: rows;
+    }
+    
 
     protected Character[][] DecodeWithBruteForce() {
         return null;
@@ -55,10 +63,10 @@ public class Decodification {
             transformation.set(position, 0);
             result.set(position, key.length() - (i+1));
         }
-        System.out.println(result);
         return result;
+        
     }
-    
+
     private int MaxValue(ArrayList<Integer> transformation){
         int pointer = 0;
         for (int i = transformation.size()-1; i > 0; i--) {
@@ -68,5 +76,4 @@ public class Decodification {
         }
         return pointer;
     }
-
 }
