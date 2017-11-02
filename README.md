@@ -1,4 +1,4 @@
-# Decode Transposition
+# Decodificador del cifrado por transposición de columnas / Decoder of the encryption by transposition of columns
 #### En este README está documentada toda la información necesaria para usar el programa de descifrado de textos por transposición.
 #### This README documents all the necessary information to use the deciphering texts by transposition program.
 ***
