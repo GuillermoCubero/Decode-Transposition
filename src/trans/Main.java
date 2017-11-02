@@ -14,7 +14,7 @@ public class Main {
                 for (int[] overflows : overflowsList) {
                     String decode = Decodification.decode(permutation, overflows, inputData.getCipherText());
                     if (decode.contains(inputData.getPosibleWord()) && decode.endsWith(generateStringOfSpaces(i-(inputData.getCipherText().length()%i)))){
-                        System.out.println("Permutacion: " + Arrays.toString(permutation) + " Overflows: " + Arrays.toString(overflows));
+                        System.out.println("Permutation: " + Arrays.toString(permutation) + " Overflows: " + Arrays.toString(overflows));
                         System.out.println(decode);
                         System.exit(0);
                     }
@@ -24,7 +24,7 @@ public class Main {
     }
 
     private static void printArrayList(ArrayList<int[]> permutations) {
-        for (int[] permutacion : permutations)System.out.println(Arrays.toString(permutacion));
+        for (int[] permutation : permutations)System.out.println(Arrays.toString(permutation));
     }
 
     private static String generateStringOfSpaces(int i) {
