@@ -2,6 +2,9 @@
 #### En este README está documentada toda la información necesaria para usar el programa de descifrado de textos por transposición.
 #### This README documents all the information necessary to use program of deciphering texts by transposition.
 ***
+#### Esto es una aplicación que descifra textos cifrados por transposición de columnas con clave, realizada para la asignatura CSCA (Ciberseguridad: Contexto y Amenazas) del Máster Universitario en Ciberseguridad de la [Universidad politécnica de Madrid.](http://www.ulpgc.es/) 
+![](http://www.academiakapicua.com/imagenes/upm.gif)
+***
 ### Para usar la aplicación descarga el fichero de git y inicializa el proyecto en tu entorno de desarrollo. / To use the application download the git file and initialize the project in your development environment.
 
 ![](https://imgur.com/rqzjxdb.jpg)
