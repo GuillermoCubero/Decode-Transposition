@@ -10,18 +10,18 @@ public class InputData {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insert cipher text:");
         this.cipherText = scanner.nextLine();
-        System.out.println("Insert possible word:");
+        System.out.println("Insert probable word:");
         this.possibleWord = scanner.nextLine();
-        System.out.println("CALCULATING PERMUTATIONS...");
+        System.out.println("DECIPHERING...");
     }
 
     public String getCipherText() {
         cipherText = cipherText.replaceAll(" ", "");
-        return cipherText;
+        return cipherText.toUpperCase();
     }
 
     public String getPosibleWord() {
-        return possibleWord;
+        return possibleWord.toUpperCase();
     }
     
 }
